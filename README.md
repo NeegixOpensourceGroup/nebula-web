@@ -1,24 +1,26 @@
 # nebula-web
 
 #### 介绍
+研究了很多脚手架，发现好看的功能多的收费（这没有错，毕竟需要生活的嘛），简单的可能满足不了需求，或者说有些脚手架没有用到最新的技术（这个其实在我看来没有问题，毕竟业务稳定还是第一位的），而我就想着对新技术尝鲜，也想基本搭建的这个脚手架做一些更灵活的开发。
+
+希望大家都能参与进来。共同成长
+
 基于vue3+vite5+element-plus,手撸的一套脚手架
 
 #### 软件架构
-软件架构说明
-
+* Vue3
+* Vite5
+* ELement-Plus
 
 #### 安装教程
 
-1.  xxxx
-2.  xxxx
-3.  xxxx
+1.  `npm install`
+2.  `npm run dev`
+3.  `npm run build`
 
-#### 使用说明
-
-1.  xxxx
-2.  xxxx
-3.  xxxx
-
+#### 系统截图（目前还是非常原始的一个状态，会不断更新，放图是为了让大家心里有个数）
+![](https://gitee.com/kushu001/pic-go-images/raw/master/images/20240325232900.png)
+![](https://gitee.com/kushu001/pic-go-images/raw/master/images/20240325232922.png)
 #### 参与贡献
 
 1.  Fork 本仓库
