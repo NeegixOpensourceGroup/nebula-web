@@ -1,9 +1,27 @@
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-*.code-workspace
+# 依赖文件
+node_modules/
+ 
+# 环境变量文件
+.env
+.env.local
+ 
+# 开发环境的缓存文件
+.vscode/
+.idea/
+.cache/
+ 
+# 日志文件
+npm-debug.log*
+yarn-debug.log*
+ 
+# 锁文件
+yarn.lock
+package-lock.json
+ 
+# 如果你是使用电脑上的IDE来管理项目，可以添加IDE配置文件的忽略
+.vscode/
+ 
+# 在Vue项目中，可能会有一些dist目录或者其他构建产物，可以根据实际情况忽略
+dist/
 
-# Local History for Visual Studio Code
-.history/
+.DS_Store
