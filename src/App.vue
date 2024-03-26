@@ -55,16 +55,19 @@
     </el-aside>
 
     <el-container>
-      <el-header style="font-size: 12px;height: 90px;">
-        <div style="display: flex;flex-direction: row; justify-content: space-between">
-          <div style="display: flex;flex-direction: row; justify-content: space-between">
+      <el-header style="font-size: 12px;height: 90px; width: 100%;">
+        <div class="container">
+          <div class="left">
             <div style="display: flex;flex-direction: column; justify-content: flex-end;height: 60px;">
-              <el-icon :size="25" @click="isCollapse= !isCollapse" style="cursor: pointer;" color="#000">
+              <el-icon :size="25" @click="isCollapse= !isCollapse" style="cursor: pointer;" color="#909399">
                 <component :is="!isCollapse ? Fold : Expand" />
               </el-icon>
             </div>
+          </div>
+          <div class="middle">
             <el-menu
               :default-active="activeIndex"
+              class="el-menu-demo"
               mode="horizontal"
               @select="handleSelect"
             >
@@ -85,7 +88,8 @@
               <el-menu-item index="4">Orders</el-menu-item>
             </el-menu>
           </div>
-          <div style="display: flex;flex-direction: column; justify-content: center;height: 60px;">
+          <div class="right">
+            <div style="display: flex;flex-direction: column; justify-content: center;height: 60px;">
             <div>
               <el-dropdown>
                 <el-icon style="margin-right: 8px; margin-top: 1px"
@@ -101,6 +105,7 @@
               </el-dropdown>
               <span>Tom</span>
             </div>
+          </div>
           </div>
         </div>
         <div style=" height: 30px;display: flex;flex-direction: column; justify-content: center;">
@@ -172,4 +177,24 @@ const tableData = ref(Array.from({ length: 20 }).fill(item))
 </script>
 
 <style scoped>
+.container {
+    display: flex;
+    border-bottom: 1px solid #dcdfe6;
+}
+.left{
+  width: 23px;
+
+}
+.left,
+.right {
+    flex: 0 0 auto; /* 定义为固定宽度，不参与flex-grow和flex-shrink */
+}
+.right{
+  width: 200px;
+}
+
+.middle {
+    flex: 1 1 auto; /* 定义为自适应宽度，flex-grow为1，表示剩余空间按比例分配给它 */
+    min-width: 0; /* 避免某些情况下内容过少时，元素不收缩的问题 */
+}
 </style>

@@ -85,3 +85,7 @@ body{
 .el-main, .el-header, .el-aside{
   padding: 0px !important;
 }
+
+.el-menu--horizontal.el-menu{
+  border-bottom: 0;
+}
