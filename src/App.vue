@@ -1,61 +1,61 @@
 <template>
-  <el-container class="layout-container-demo" :style="`height: ${windowHeight}px`">
-    <el-aside width="{isCollapse ? '65px' : '200px'}">
-        <div style="text-align: center;">
-          <div v-if="!isCollapse" style="display: flex;flex-direction: column; justify-content: center;height: 60px;">
-            <div>Nebula</div>
-            <div style="font-size: 10px; color:blueviolet">Preview Edition</div>
-          </div>
-          <div v-if="isCollapse" style="display: flex;flex-direction: column; justify-content: center;height: 60px;">
-            <div>NE</div>
-          </div>
-          
+  <el-container :style="`height: ${windowHeight}px; min-width:600px`">
+    <el-aside width="{isCollapse ? '65px' : '185px'}" style="border-right: 1px solid #dcdfe6;">
+      <div style="text-align: center;">
+        <div v-if="!isCollapse" style="display: flex;flex-direction: column; justify-content: center;height: 60px;">
+          <div>Nebula</div>
+          <div style="font-size: 10px; color:blueviolet">Preview Edition</div>
         </div>
-        <el-scrollbar :style="`height: ${windowHeight - 60}px`">
-          <el-menu
-            default-active="2"
-            class="el-menu-vertical-demo"
-            :collapse="isCollapse"
-            @open="handleOpen"
-            @close="handleClose"
-            :style="`min-height: ${windowHeight - 60}px`"
-          >
-            <el-sub-menu index="1">
-              <template #title>
-                <el-icon><location /></el-icon>
-                <span>Navigator One</span>
-              </template>
-              <el-menu-item-group>
-                <template #title><span>Group One</span></template>
-                <el-menu-item index="1-1">item one</el-menu-item>
-                <el-menu-item index="1-2">item two</el-menu-item>
-              </el-menu-item-group>
-              <el-menu-item-group title="Group Two">
-                <el-menu-item index="1-3">item three</el-menu-item>
-              </el-menu-item-group>
-              <el-sub-menu index="1-4">
-                <template #title><span>item four</span></template>
-                <el-menu-item index="1-4-1">item one</el-menu-item>
-              </el-sub-menu>
+        <div v-if="isCollapse" style="display: flex;flex-direction: column; justify-content: center;height: 60px;">
+          <div>NE</div>
+        </div>
+      </div>
+      <el-scrollbar :style="`height: ${windowHeight -  (!isCollapse?90:105)}px`">
+        <el-menu
+          default-active="1"
+          :collapse="isCollapse"
+          @open="handleOpen"
+          @close="handleClose"
+          :style="`min-height: ${windowHeight - (!isCollapse? 90 : 105)}px;border-right:0px`"
+        >
+          <el-sub-menu index="1">
+            <template #title>
+              <el-icon><location /></el-icon>
+              <span>Navigator One</span>
+            </template>
+            <el-menu-item-group>
+              <template #title><span>Group One</span></template>
+              <el-menu-item index="1-1">item one</el-menu-item>
+              <el-menu-item index="1-2">item two</el-menu-item>
+            </el-menu-item-group>
+            <el-menu-item-group title="Group Two">
+              <el-menu-item index="1-3">item three</el-menu-item>
+            </el-menu-item-group>
+            <el-sub-menu index="1-4">
+              <template #title><span>item four</span></template>
+              <el-menu-item index="1-4-1">item one</el-menu-item>
             </el-sub-menu>
-            <el-menu-item index="2">
-              <el-icon><icon-menu /></el-icon>
-              <template #title>Navigator Two</template>
-            </el-menu-item>
-            <el-menu-item index="3" disabled>
-              <el-icon><document /></el-icon>
-              <template #title>Navigator Three</template>
-            </el-menu-item>
-            <el-menu-item index="4">
-              <el-icon><setting /></el-icon>
-              <template #title>Navigator Four</template>
-            </el-menu-item>
-          </el-menu>
-        </el-scrollbar>
+          </el-sub-menu>
+          <el-menu-item index="2">
+            <el-icon><icon-menu /></el-icon>
+            <template #title>Navigator Two</template>
+          </el-menu-item>
+          <el-menu-item index="3" disabled>
+            <el-icon><document /></el-icon>
+            <template #title>Navigator Three</template>
+          </el-menu-item>
+          <el-menu-item index="4">
+            <el-icon><setting /></el-icon>
+            <template #title>Navigator Four</template>
+          </el-menu-item>
+        </el-menu>
+      </el-scrollbar>
+      <div :style="`font-size: 10px;color: #909399;height: ${!isCollapse ? '30' : '45'}px; vertical-align: middle;background-color: #fff;position: fixed; bottom: 0px; text-align: center; width: ${isCollapse ? '63px' : '187px'};`">
+          Copyright © {{ new Date().getFullYear() }} By Nebula
+      </div>
     </el-aside>
-
     <el-container>
-      <el-header style="font-size: 12px;height: 90px; width: 100%;">
+      <el-header style="font-size: 12px;height: 90px;">
         <div class="container">
           <div class="left">
             <div style="display: flex;flex-direction: column; justify-content: flex-end;height: 60px;">
@@ -104,7 +104,7 @@
             </div>
           </div>
         </div>
-        <div style=" height: 30px;display: flex;flex-direction: column; justify-content: center;">
+        <div style=" height: 30px;display: flex;flex-direction: column; justify-content: center; border-bottom: 1px solid #dcdfe6;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);position: relative; z-index: 2;padding-left: 10px;">
           <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
             <el-breadcrumb-item
