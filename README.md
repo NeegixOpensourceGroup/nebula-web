@@ -1,4 +1,14 @@
-# nebula-web
+# <center>nebula-web</center>
+<div align=center>
+
+  ![Static Badge](https://img.shields.io/badge/v0.0.1-white?style=flat&logo=nebula&label=nebula&color=%23FF0000)
+
+  ![Static Badge](https://img.shields.io/badge/v20.11.1-white?style=flat&logoColor=%23339933&label=nodejs&color=%23339933)
+  ![Static Badge](https://img.shields.io/badge/v10.5.0-white?style=flat&logo=npm&label=npm&color=%23CB3837)
+  ![Static Badge](https://img.shields.io/badge/v3.4.21-white?style=flat&label=vue&color=%234FC08D)
+  ![](https://img.shields.io/badge/v5.0.8-white?style=flat&logo=vue&label=vue%2Fcli&labelColor=%234FC08D)
+  ![Static Badge](https://img.shields.io/badge/v5.2.4-white?style=flat&logo=vite&label=vite&color=%23646CFF)
+</div>
 
 #### 介绍
 研究了很多脚手架，发现好看的功能多的收费（这没有错，毕竟需要生活的嘛），简单的可能满足不了需求，或者说有些脚手架没有用到最新的技术（这个其实在我看来没有问题，毕竟业务稳定还是第一位的），而我就想着对新技术尝鲜，也想基本搭建的这个脚手架做一些更灵活的开发。
@@ -10,13 +20,13 @@
 #### 软件架构
 * Vue3
 * Vite5
-* ELement-Plus
+* Element-Plus
 
 #### 安装教程
 
-1.  `npm install`
-2.  `npm run dev`
-3.  `npm run build`
+1.  安装依赖包：`npm install`
+2.  运行：`npm run dev`
+3.  编译：`npm run build`
 
 #### 系统截图（目前还是非常原始的一个状态，会不断更新，放图是为了让大家心里有个数）
 ![](https://gitee.com/kushu001/pic-go-images/raw/master/images/20240327154001.png)
