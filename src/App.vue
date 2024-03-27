@@ -89,12 +89,9 @@
             </el-menu>
           </div>
           <div class="right">
-            <div style="display: flex;flex-direction: column; justify-content: center;height: 60px;">
             <div>
               <el-dropdown>
-                <el-icon style="margin-right: 8px; margin-top: 1px"
-                  ><setting
-                /></el-icon>
+                <el-icon style="margin-right: 8px; margin-top: 1px"><setting/></el-icon>
                 <template #dropdown>
                   <el-dropdown-menu>
                     <el-dropdown-item>View</el-dropdown-item>
@@ -105,7 +102,6 @@
               </el-dropdown>
               <span>Tom</span>
             </div>
-          </div>
           </div>
         </div>
         <div style=" height: 30px;display: flex;flex-direction: column; justify-content: center;">
@@ -142,6 +138,7 @@ import {
   Fold
 } from '@element-plus/icons-vue'
 const windowHeight = ref(window.innerHeight)
+const windowWidth = ref(window.innerWidth)
 const isCollapse = ref(false)
 
 const handleOpen = (key: string, keyPath: string[]) => {
@@ -153,6 +150,12 @@ const handleClose = (key: string, keyPath: string[]) => {
 
 function handleResize() {
   windowHeight.value = window.innerHeight;
+  windowWidth.value = window.innerWidth;
+  if (windowWidth.value < 768) {
+    isCollapse.value = true
+  } else {
+    isCollapse.value = false
+  }
 }
 const activeIndex = ref('1')
 
@@ -191,6 +194,9 @@ const tableData = ref(Array.from({ length: 20 }).fill(item))
 }
 .right{
   width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .middle {
