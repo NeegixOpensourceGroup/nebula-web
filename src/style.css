@@ -89,3 +89,12 @@ body{
 .el-menu--horizontal.el-menu{
   border-bottom: 0;
 }
+
+
+a {
+  text-decoration: none;
+}
+
+.router-link-active {
+  text-decoration: none;
+}

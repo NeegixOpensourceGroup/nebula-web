@@ -25,8 +25,8 @@
             </template>
             <el-menu-item-group>
               <template #title><span>Group One</span></template>
-              <el-menu-item index="1-1">item one</el-menu-item>
-              <el-menu-item index="1-2">item two</el-menu-item>
+              <router-link to="/"><el-menu-item index="1-1">item one</el-menu-item></router-link>
+              <router-link to="/item21"><el-menu-item index="1-2">item two</el-menu-item></router-link>
             </el-menu-item-group>
             <el-menu-item-group title="Group Two">
               <el-menu-item index="1-3">item three</el-menu-item>
@@ -117,11 +117,12 @@
       </el-header>
       <el-main>
         <el-scrollbar>
-          <el-table :data="tableData">
+          <!-- <el-table :data="tableData">
             <el-table-column prop="date" label="Date" width="140" />
             <el-table-column prop="name" label="Name" width="120" />
             <el-table-column prop="address" label="Address" />
-          </el-table>
+          </el-table> -->
+          <router-view></router-view>
         </el-scrollbar>
       </el-main>
     </el-container>
