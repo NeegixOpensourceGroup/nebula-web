@@ -33,6 +33,8 @@
 #### 系统截图（目前还是非常原始的一个状态，会不断更新，放图是为了让大家心里有个数）
 ![](https://gitee.com/kushu001/pic-go-images/raw/master/images/20240327154001.png)
 ![](https://gitee.com/kushu001/pic-go-images/raw/master/images/20240327154025.png)
+![](https://gitee.com/kushu001/pic-go-images/raw/master/images/20240328104431.png)
+![](https://gitee.com/kushu001/pic-go-images/raw/master/images/20240328104501.png)
 #### 参与贡献
 
 1.  Fork 本仓库
