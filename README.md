@@ -23,6 +23,7 @@
 * Vue3
 * Vite5
 * Element-Plus
+* Vue Router
 
 #### 安装教程
 

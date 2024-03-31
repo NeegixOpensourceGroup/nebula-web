@@ -1,5 +1,5 @@
 <template>
-  <el-container :style="`height: ${windowHeight}px; min-width:600px`">
+  <el-container :style="`height: ${windowHeight}px;`">
     <el-aside width="{isCollapse ? '65px' : '185px'}" style="border-right: 1px solid #dcdfe6;">
       <div style="text-align: center;">
         <div v-if="!isCollapse" style="display: flex;flex-direction: column; justify-content: center;height: 60px;">
@@ -101,18 +101,33 @@
                 </template>
               </el-dropdown>
               <span>Tom</span>
+              <el-button type="primary" size="small" @click="addTab(editableTabsValue)"> 新增tab</el-button>
             </div>
           </div>
         </div>
-        <div style=" height: 30px;display: flex;flex-direction: column; justify-content: center; border-bottom: 1px solid #dcdfe6;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);position: relative; z-index: 2;padding-left: 10px;">
-          <el-breadcrumb separator="/">
+        <div style="height: 30px; position: relative; z-index: 2;">
+          <!-- <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
             <el-breadcrumb-item
               ><a href="/">promotion management</a></el-breadcrumb-item
             >
             <el-breadcrumb-item>promotion list</el-breadcrumb-item>
             <el-breadcrumb-item>promotion detail</el-breadcrumb-item>
-          </el-breadcrumb>
+          </el-breadcrumb> -->
+          <el-tabs
+            v-model="editableTabsValue"
+            type="card"
+            closable
+            @tab-click="clickTab"
+            @tab-remove="removeTab"
+          >
+            <el-tab-pane
+              v-for="item in editableTabs"
+              :key="item.name"
+              :label="item.title"
+              :name="item.name"
+            />
+          </el-tabs>
         </div>
       </el-header>
       <el-main>
@@ -132,16 +147,18 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { Menu as IconMenu, Setting } from '@element-plus/icons-vue'
+import { useRouter } from 'vue-router'
 import {
   Document,
   Location,
   Expand, 
   Fold
 } from '@element-plus/icons-vue'
+import { TabsPaneContext } from 'element-plus';
 const windowHeight = ref(window.innerHeight)
 const windowWidth = ref(window.innerWidth)
 const isCollapse = ref(false)
-
+const router = useRouter()
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
@@ -178,6 +195,58 @@ const item = {
   address: 'No. 189, Grove St, Los Angeles',
 }
 const tableData = ref(Array.from({ length: 20 }).fill(item))
+
+
+let tabIndex = 2
+const editableTabsValue = ref('2')
+const editableTabs = ref([
+  {
+    title: 'Tab 1',
+    name: '1',
+    content: 'Tab 1 content',
+  },
+  {
+    title: 'Tab 2',
+    name: '2',
+    content: 'Tab 2 content',
+  },
+])
+
+const addTab = (targetName: string) => {
+  const newTabName = `${++tabIndex}`
+  editableTabs.value.push({
+    title: 'New Tab',
+    name: newTabName,
+    content: 'New Tab content',
+  })
+  editableTabsValue.value = newTabName
+}
+const removeTab = (targetName: string) => {
+  const tabs = editableTabs.value
+  let activeName = editableTabsValue.value
+  if (activeName === targetName) {
+    tabs.forEach((tab, index) => {
+      if (tab.name === targetName) {
+        const nextTab = tabs[index + 1] || tabs[index - 1]
+        if (nextTab) {
+          activeName = nextTab.name
+        }
+      }
+    })
+  }
+
+  editableTabsValue.value = activeName
+  editableTabs.value = tabs.filter((tab) => tab.name !== targetName)
+}
+
+const clickTab = (pane: TabsPaneContext, ev: Event) => {
+  console.log(pane.paneName)
+  const path = pane.paneName === '1' ? '/' : `/item${pane.paneName}1`
+  router.push(path)
+}
+
+
+
 </script>
 
 <style scoped>
@@ -203,5 +272,8 @@ const tableData = ref(Array.from({ length: 20 }).fill(item))
 .middle {
     flex: 1 1 auto; /* 定义为自适应宽度，flex-grow为1，表示剩余空间按比例分配给它 */
     min-width: 0; /* 避免某些情况下内容过少时，元素不收缩的问题 */
+}
+.el-tabs {
+  --el-tabs-header-height: 30px;
 }
 </style>
