@@ -120,14 +120,26 @@
             closable
             @tab-click="clickTab"
             @tab-remove="removeTab"
+            @contextmenu.prevent="rightClick"
           >
             <el-tab-pane
               v-for="item in editableTabs"
               :key="item.name"
               :label="item.title"
               :name="item.name"
+              
             />
           </el-tabs>
+          <ul
+              v-show="contextMenuVisible"
+              :style="{left:left+'px',top:top+'px'}"
+              class="contextmenu"
+            >
+              <li @click="closeAll()">关闭所有</li>
+              <li>关闭左边</li>
+              <li>关闭右边</li>
+              <li>关闭其他</li>
+            </ul>
         </div>
       </el-header>
       <el-main>
@@ -155,9 +167,13 @@ import {
   Fold
 } from '@element-plus/icons-vue'
 import { TabsPaneContext } from 'element-plus';
+import { pa } from 'element-plus/es/locale';
 const windowHeight = ref(window.innerHeight)
 const windowWidth = ref(window.innerWidth)
 const isCollapse = ref(false)
+const contextMenuVisible = ref(false)
+const left = ref(0)
+const top = ref(0)
 const router = useRouter()
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
@@ -180,13 +196,49 @@ const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
+
+const closeAll = () => {
+  console.log("closeAll")
+}
+
+const rightClick = (mouseEvent: MouseEvent) => {
+
+  let targetId: string | undefined;
+  const target = mouseEvent.target as Element; // 类型断言为Element
+  if (target instanceof HTMLInputElement || target instanceof HTMLDivElement) {
+    targetId = target.id;
+    if (!!targetId) {
+      console.log("targetId is:" , targetId)
+      contextMenuVisible.value = true;
+      left.value = mouseEvent.clientX - (isCollapse.value? 65: 185);
+      top.value = mouseEvent.clientY - 60;
+      console.log("isCollapse:",isCollapse.value,"x:", left.value, "y:", top.value)
+    } else {
+      contextMenuVisible.value = false;
+    }
+    
+    //console.log("鼠标右击事件", mouseEvent)
+  }
+  
+}
+
+const handleClickOtherArea = (e) => {
+  const target = e.target as Element
+  if (target.className !== 'contextmenu') { // 只要点击的不是el-tag就可以关闭，因为el-tag是用span标签实现的
+    contextMenuVisible.value = false
+  }
+}
+
 onMounted(() => {
   window.addEventListener('resize', handleResize);
   handleResize(); // 初始化获取高度
+
+  window.addEventListener('click', handleClickOtherArea)
 });
  
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize);
+  window.removeEventListener('resize', handleClickOtherArea);
 });
 
 const item = {
@@ -275,5 +327,28 @@ const clickTab = (pane: TabsPaneContext, ev: Event) => {
 }
 .el-tabs {
   --el-tabs-header-height: 30px;
+}
+
+.contextmenu {
+  width: 100px;
+  margin: 0;
+  border: 1px solid #ccc;
+  background: #fff;
+  z-index: 3000;
+  position: absolute;
+  list-style-type: none;
+  padding: 5px 0;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #333;
+  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2);
+}
+.contextmenu li {
+  margin: 0;
+  padding: 7px 16px;
+}
+.contextmenu li:hover {
+  background: #f2f2f2;
+  cursor: pointer;
 }
 </style>
