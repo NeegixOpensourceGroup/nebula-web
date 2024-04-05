@@ -50,8 +50,8 @@
           </el-menu-item>
         </el-menu>
       </el-scrollbar>
-      <div :style="`font-size: 10px;color: #909399;height: ${!isCollapse ? '30' : '45'}px; vertical-align: middle;background-color: #fff;position: fixed; bottom: 0px; text-align: center; width: ${isCollapse ? '63px' : '187px'};`">
-          Copyright © {{ new Date().getFullYear() }} By Nebula
+      <div :style="`font-size: 10px;color: #909399;height: ${!isCollapse ? '30' : '45'}px; vertical-align: middle;background-color: #fff;position: fixed; bottom: 0px; text-align: center; width: ${isCollapse ? '63px' : '186px'};`">
+          Copyright © {{ new Date().getFullYear() }} By NOSG
       </div>
     </el-aside>
     <el-container>
