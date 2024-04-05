@@ -167,7 +167,6 @@ import {
   Fold
 } from '@element-plus/icons-vue'
 import { TabsPaneContext } from 'element-plus';
-import { pa } from 'element-plus/es/locale';
 const windowHeight = ref(window.innerHeight)
 const windowWidth = ref(window.innerWidth)
 const isCollapse = ref(false)
