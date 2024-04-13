@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Item21 from '@/views/example2/item1/index.vue'
+import Item11 from '@/views/example1/item1/index.vue'
 import Layout from '@/layout/index.vue'
 
 const router = createRouter({
@@ -8,11 +9,17 @@ const router = createRouter({
     {
       path: '/',
       name: 'layout',
+      redirect: '/item11',
       component: Layout,
       children: [
         {
+          path: '/item11',
+          name: 'item11',
+          component: Item11
+        },
+        {
           path: '/item21',
-          name: 'home',
+          name: 'item21',
           component: Item21
         }
       ]

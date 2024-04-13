@@ -252,8 +252,8 @@ const item = {
 const tableData = ref(Array.from({ length: 20 }).fill(item))
 
 
-let tabIndex = 2
-const editableTabsValue = ref('2')
+let tabIndex = 1
+const editableTabsValue = ref('1')
 const editableTabs = ref([
   {
     title: 'Tab 1',
