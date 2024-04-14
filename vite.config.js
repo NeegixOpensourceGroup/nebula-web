@@ -12,6 +12,8 @@ export default defineConfig({
     // 比如当前工作目录为 D:\205\wms-web 那么 @ 就代表 D:\205\wms-web\src
     alias: {
       '@': path.resolve(__dirname, './src'),
-    }
+    },
+    // 自定义扩展名
+    extensions: ['.js', '.jsx', '.json', '.vue']
   },
 })

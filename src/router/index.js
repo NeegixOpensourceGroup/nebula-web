@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Item21 from '@/views/example2/item1/index.vue'
-import Item11 from '@/views/example1/item1/index.vue'
-import Layout from '@/layout/index.vue'
+import Item21 from '@/views/example2/item1/index'
+import Item11 from '@/views/example1/item1/index'
+import Layout from '@/layout/index'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
