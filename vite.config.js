@@ -14,6 +14,6 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
     // 自定义扩展名
-    extensions: ['.js', '.jsx', '.json', '.vue']
+    extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
   },
 })

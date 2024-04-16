@@ -78,8 +78,13 @@ button:focus-visible {
   }
 } */
 
-body{
+html, body{
   margin: 0;
+  height: 100%;
+}
+
+#app{
+  height: 100%;
 }
 
 .el-main, .el-header, .el-aside{

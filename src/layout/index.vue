@@ -1,16 +1,16 @@
 <template>
-  <el-container :style="`height: ${windowHeight}px;`">
-    <el-aside width="{isCollapse ? '65px' : '185px'}" style="border-right: 1px solid #dcdfe6;">
-      <div style="text-align: center;">
-        <div v-if="!isCollapse" style="display: flex;flex-direction: column; justify-content: center;height: 60px;">
+  <el-container style="height: 100%;">
+    <el-aside width="auto" style="border-right: 1px solid #dcdfe6;height: 100%;display: flex;flex-direction: column;">
+      <div style="text-align: center;height: 60px;">
+        <div v-if="!isCollapse" style="display: flex;flex-direction: column; justify-content: center;">
           <div>Nebula</div>
           <div style="font-size: 10px; color:blueviolet">Preview Edition</div>
         </div>
-        <div v-if="isCollapse" style="display: flex;flex-direction: column; justify-content: center;height: 60px;">
+        <div v-if="isCollapse" style="display: flex;flex-direction: column; justify-content: center;">
           <div>NE</div>
         </div>
       </div>
-      <el-scrollbar :style="`height: ${windowHeight -  (!isCollapse?90:105)}px`">
+      <el-scrollbar style="flex: 1;">
         <el-menu
           ref="sideMenu"
           default-active="1"
@@ -18,7 +18,7 @@
           @open="handleOpen"
           @close="handleClose"
           class="el-menu-vertical-demo"
-          :style="`min-height: ${windowHeight - (!isCollapse? 90 : 105)}px;border-right:0px;`"
+          :style="`border-right:0px;`"
         >
           <el-sub-menu index="1">
             <template #title>
@@ -52,8 +52,8 @@
           </el-menu-item>
         </el-menu>
       </el-scrollbar>
-      <div style="display:flex; justify-content: center;">
-        <span :style="`font-size: 10px;color: #909399;height: ${!isCollapse ? '30' : '45'}px; vertical-align: middle;background-color: #fff;position: fixed; bottom: 0px; text-align: center;`">
+      <div :style="`display:flex; display: -webkit-flex;-webkit-justify-content: center;box-sizing: border-box;justify-content: center;height: ${!isCollapse ? '30' : '45'}px;position: relative;`">
+        <span :style="`font-size: 10px;color: #909399;height: ${!isCollapse ? '30' : '45'}px; vertical-align: middle;position: absolute; bottom: 0px; text-align: center;`">
             Copyright © {{ new Date().getFullYear() }} By NOSG
         </span>
       </div>
@@ -105,54 +105,14 @@
                 </template>
               </el-dropdown>
               <span>Tom</span>
-              <el-button type="primary" size="small" @click="addTab(editableTabsValue)">新增tab</el-button>
+              <!-- <el-button type="primary" size="small" @click="addTab(editableTabsValue)">新增tab</el-button> -->
             </div>
           </div>
         </div>
-        <div style="height: 30px; position: relative; z-index: 2;">
-          <!-- <el-breadcrumb separator="/">
-            <el-breadcrumb-item :to="{ path: '/' }">homepage</el-breadcrumb-item>
-            <el-breadcrumb-item
-              ><a href="/">promotion management</a></el-breadcrumb-item
-            >
-            <el-breadcrumb-item>promotion list</el-breadcrumb-item>
-            <el-breadcrumb-item>promotion detail</el-breadcrumb-item>
-          </el-breadcrumb> -->
-          <el-tabs
-            v-model="editableTabsValue"
-            type="card"
-            closable
-            @tab-click="clickTab"
-            @tab-remove="removeTab"
-            @contextmenu.prevent="rightClick"
-          >
-            <el-tab-pane
-              v-for="item in editableTabs"
-              :key="item.name"
-              :label="item.title"
-              :name="item.name"
-              
-            />
-          </el-tabs>
-          <ul
-              v-show="contextMenuVisible"
-              :style="{left:left+'px',top:top+'px'}"
-              class="contextmenu"
-            >
-              <li @click="closeAll()">关闭所有</li>
-              <li>关闭左边</li>
-              <li>关闭右边</li>
-              <li>关闭其他</li>
-            </ul>
-        </div>
+        <tabs-nav :is-collapse="isCollapse" />
       </el-header>
       <el-main>
         <el-scrollbar>
-          <!-- <el-table :data="tableData">
-            <el-table-column prop="date" label="Date" width="140" />
-            <el-table-column prop="name" label="Name" width="120" />
-            <el-table-column prop="address" label="Address" />
-          </el-table> -->
           <router-view></router-view>
         </el-scrollbar>
       </el-main>
@@ -163,21 +123,16 @@
 <script lang="ts" setup>
 import { ref, onMounted, onUnmounted } from 'vue'
 import { Menu as IconMenu, Setting } from '@element-plus/icons-vue'
-import { useRouter } from 'vue-router'
 import {
   Document,
   Location,
   Expand, 
   Fold
 } from '@element-plus/icons-vue'
-import { TabsPaneContext } from 'element-plus';
+import TabsNav from './components/TabsNav'
 const windowHeight = ref(window.innerHeight)
 const windowWidth = ref(window.innerWidth)
 const isCollapse = ref(false)
-const contextMenuVisible = ref(false)
-const left = ref(0)
-const top = ref(0)
-const router = useRouter()
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
@@ -199,109 +154,15 @@ const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
-
-const closeAll = () => {
-  console.log("closeAll")
-}
-
-const rightClick = (mouseEvent: MouseEvent) => {
-
-  let targetId: string | undefined;
-  const target = mouseEvent.target as Element; // 类型断言为Element
-  if (target instanceof HTMLInputElement || target instanceof HTMLDivElement) {
-    targetId = target.id;
-    if (!!targetId) {
-      console.log("targetId is:" , targetId)
-      contextMenuVisible.value = true;
-      left.value = mouseEvent.clientX - (isCollapse.value? 65: 185);
-      top.value = mouseEvent.clientY - 60;
-      console.log("isCollapse:",isCollapse.value,"x:", left.value, "y:", top.value)
-    } else {
-      contextMenuVisible.value = false;
-    }
-    
-    //console.log("鼠标右击事件", mouseEvent)
-  }
-  
-}
-
-const handleClickOtherArea = (e) => {
-  const target = e.target as Element
-  if (target.className !== 'contextmenu') { // 只要点击的不是el-tag就可以关闭，因为el-tag是用span标签实现的
-    contextMenuVisible.value = false
-  }
-}
-
-
+const sideMenuRef = ref(null);
 onMounted(() => {
   window.addEventListener('resize', handleResize);
   handleResize(); // 初始化获取高度
-  window.addEventListener('click', handleClickOtherArea)
 });
  
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize);
-  window.removeEventListener('click', handleClickOtherArea);
 });
-
-const item = {
-  date: '2016-05-02',
-  name: 'Tom',
-  address: 'No. 189, Grove St, Los Angeles',
-}
-const tableData = ref(Array.from({ length: 20 }).fill(item))
-
-
-let tabIndex = 1
-const editableTabsValue = ref('1')
-const editableTabs = ref([
-  {
-    title: 'Tab 1',
-    name: '1',
-    content: 'Tab 1 content',
-  },
-  {
-    title: 'Tab 2',
-    name: '2',
-    content: 'Tab 2 content',
-  },
-])
-
-const addTab = (targetName: string) => {
-  const newTabName = `${++tabIndex}`
-  editableTabs.value.push({
-    title: 'New Tab',
-    name: newTabName,
-    content: 'New Tab content',
-  })
-  editableTabsValue.value = newTabName
-}
-const removeTab = (targetName: string) => {
-  const tabs = editableTabs.value
-  let activeName = editableTabsValue.value
-  if (activeName === targetName) {
-    tabs.forEach((tab, index) => {
-      if (tab.name === targetName) {
-        const nextTab = tabs[index + 1] || tabs[index - 1]
-        if (nextTab) {
-          activeName = nextTab.name
-        }
-      }
-    })
-  }
-
-  editableTabsValue.value = activeName
-  editableTabs.value = tabs.filter((tab) => tab.name !== targetName)
-}
-
-const clickTab = (pane: TabsPaneContext, ev: Event) => {
-  console.log(pane.paneName)
-  const path = pane.paneName === '1' ? '/' : `/item${pane.paneName}1`
-  router.push(path)
-}
-
-
-
 </script>
 
 <style scoped>
@@ -311,8 +172,8 @@ const clickTab = (pane: TabsPaneContext, ev: Event) => {
 }
 .left{
   width: 23px;
-
 }
+
 .left,
 .right {
     flex: 0 0 auto; /* 定义为固定宽度，不参与flex-grow和flex-shrink */
@@ -328,34 +189,9 @@ const clickTab = (pane: TabsPaneContext, ev: Event) => {
     flex: 1 1 auto; /* 定义为自适应宽度，flex-grow为1，表示剩余空间按比例分配给它 */
     min-width: 0; /* 避免某些情况下内容过少时，元素不收缩的问题 */
 }
-.el-tabs {
-  --el-tabs-header-height: 30px;
-}
 
-.contextmenu {
-  width: 100px;
-  margin: 0;
-  border: 1px solid #ccc;
-  background: #fff;
-  z-index: 3000;
-  position: absolute;
-  list-style-type: none;
-  padding: 5px 0;
-  border-radius: 4px;
-  font-size: 14px;
-  color: #333;
-  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.2);
-}
-.contextmenu li {
-  margin: 0;
-  padding: 7px 16px;
-}
-.contextmenu li:hover {
-  background: #f2f2f2;
-  cursor: pointer;
-}
 .el-menu-vertical-demo:not(.el-menu--collapse) {
-    width: 200px;
+    width: 250px;
     min-height: 400px;
   }
 </style>
