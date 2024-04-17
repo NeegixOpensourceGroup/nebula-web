@@ -1,6 +1,6 @@
 <template>
   <el-container style="height: 100%;">
-    <asider :isCollapse="isCollapse" />
+    <asider :is-collapse="isCollapse" />
     <el-container>
       <el-header style="font-size: 12px;height: 90px;">
         <div class="container">
@@ -113,6 +113,4 @@ onUnmounted(() => {
     flex: 1 1 auto; /* 定义为自适应宽度，flex-grow为1，表示剩余空间按比例分配给它 */
     min-width: 0; /* 避免某些情况下内容过少时，元素不收缩的问题 */
 }
-
-
 </style>

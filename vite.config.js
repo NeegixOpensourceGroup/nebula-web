@@ -16,4 +16,27 @@ export default defineConfig({
     // 自定义扩展名
     extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue']
   },
+  build: {
+    rollupOptions: {
+      output: {
+        // 分包
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            return id.toString().split('node_modules/')[1].split('/')[0].toString()
+          }
+        }
+      }
+    },
+    chunkSizeWarningLimit: 1500 // 分包文件超过1500kb会报警告
+  },
+  server: {
+    port: 8080,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
+  }
 })
