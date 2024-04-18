@@ -41,12 +41,8 @@ const props = defineProps({
     type: Boolean,
     default: false
   },
-  // contextMenuVisible: {
-  //   type: Boolean,
-  //   default: false
-  // }
 })
-//const localContextMenuVisible = ref(props.contextMenuVisible);
+
 const rightClick = (mouseEvent: MouseEvent) => {
 
   let targetId: string | undefined;
@@ -54,18 +50,13 @@ const rightClick = (mouseEvent: MouseEvent) => {
   if (target instanceof HTMLInputElement || target instanceof HTMLDivElement) {
     targetId = target.id;
     if (!!targetId) {
-      //console.log("targetId is:" , targetId)
       contextMenuVisible.value = true;
       left.value = mouseEvent.clientX - (props.isCollapse ? 65: 250);
       top.value = mouseEvent.clientY - 60;
-      //console.log("isCollapse:",isCollapse.value,"x:", left.value, "y:", top.value)
     } else {
       contextMenuVisible.value = false;
     }
-    
-    //console.log("鼠标右击事件", mouseEvent)
   }
-
 }
 
 let tabIndex = 1

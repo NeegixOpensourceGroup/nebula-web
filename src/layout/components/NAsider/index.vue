@@ -1,11 +1,11 @@
 <template>
-      <el-aside width="auto" style="border-right: 1px solid #dcdfe6;height: 100%;display: flex;flex-direction: column;">
+    <el-aside width="auto" style="border-right: 1px solid #dcdfe6;height: 100%;display: flex;flex-direction: column;">
       <div style="text-align: center;height: 60px;">
         <div v-if="!isCollapse" style="display: flex;flex-direction: column; justify-content: center;height: 60px;">
           <div>
             <img src="/logo.svg" alt="logo" style="width: 30px;height: 30px;">
+            <div style="font-size: 12px; color:blueviolet">Nebula Preview Edition</div>
           </div>
-          <div style="font-size: 12px; color:blueviolet">Nebula Preview Edition</div>
         </div>
         <div v-if="isCollapse" style="display: flex;flex-direction: column; justify-content: center;height: 60px;">
           <div><img src="/logo.svg" alt="logo" style="width: 40px;height: 40px;"></div>
