@@ -2,11 +2,13 @@
       <el-aside width="auto" style="border-right: 1px solid #dcdfe6;height: 100%;display: flex;flex-direction: column;">
       <div style="text-align: center;height: 60px;">
         <div v-if="!isCollapse" style="display: flex;flex-direction: column; justify-content: center;height: 60px;">
-          <div>Nebula</div>
-          <div style="font-size: 10px; color:blueviolet">Preview Edition</div>
+          <div>
+            <img src="/logo.svg" alt="logo" style="width: 30px;height: 30px;">
+          </div>
+          <div style="font-size: 12px; color:blueviolet">Nebula Preview Edition</div>
         </div>
         <div v-if="isCollapse" style="display: flex;flex-direction: column; justify-content: center;height: 60px;">
-          <div>NE</div>
+          <div><img src="/logo.svg" alt="logo" style="width: 40px;height: 40px;"></div>
         </div>
       </div>
       <el-scrollbar style="flex: 1;">
