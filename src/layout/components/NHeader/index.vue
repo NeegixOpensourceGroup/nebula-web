@@ -36,7 +36,7 @@
         </div>
       </div>
     </div>
-    <tabs-nav :is-collapse="isCollapse" />
+    <tabs-nav :is-collapse="value" />
   </el-header>
 </template>
 <script lang="ts" setup>
@@ -56,12 +56,12 @@ const props = defineProps({
   }
 })
 
-
 const activeIndex = ref('1')
 
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
+
 
 let $emit = defineEmits(['update'])
 const isCollapseHandler = () => {
