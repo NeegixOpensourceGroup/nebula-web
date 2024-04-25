@@ -24,6 +24,7 @@
 * Vite5
 * Element-Plus
 * Vue Router
+* Pinia
 
 #### 安装教程
 
