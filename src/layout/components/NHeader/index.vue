@@ -4,7 +4,7 @@
       <div class="left">
         <div style="display: flex;flex-direction: column; justify-content: flex-end;height: 60px;">
           <el-icon :size="25" @click="isCollapseHandler" style="cursor: pointer;" color="#909399">
-            <component :is="!value ? Fold : Expand" />
+            <component :is="!isCollapse ? Fold : Expand" />
           </el-icon>
         </div>
       </div>
@@ -36,11 +36,12 @@
         </div>
       </div>
     </div>
-    <tabs-nav :is-collapse="value" />
+    <tabs-nav />
   </el-header>
 </template>
 <script lang="ts" setup>
 import { ref } from 'vue'
+import { storeToRefs } from 'pinia'
 import {
   Setting,
   Location,
@@ -48,13 +49,10 @@ import {
   Fold
 } from '@element-plus/icons-vue'
 import TabsNav from './TabsNav/index.vue'
-
-const props = defineProps({
-  value: {
-    type: Boolean,
-    default: false
-  }
-})
+import { useLayoutStore } from '@/layout/stores/layoutStore'
+// 可以在组件中的任意位置访问 `store` 变量 ✨
+const layoutStore = useLayoutStore()
+const { isCollapse } = storeToRefs(layoutStore)
 
 const activeIndex = ref('1')
 
@@ -62,10 +60,9 @@ const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
 
-
-let $emit = defineEmits(['update'])
+// 折叠
 const isCollapseHandler = () => {
-  $emit('update', !props.value)
+  layoutStore.reverseCollapse()
 }
 </script>
 

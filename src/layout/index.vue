@@ -1,8 +1,8 @@
 <template>
   <el-container style="height: 100%;">
-    <n-asider :is-collapse="isCollapse" />
+    <n-asider />
     <el-container>
-      <n-header :value="isCollapse" @update="isCollapseHandler" />
+      <n-header />
       <el-main>
         <el-scrollbar>
           <router-view></router-view>
@@ -17,17 +17,19 @@ import { ref, onMounted, onUnmounted } from 'vue'
 
 import NAsider from './components/NAsider/index.vue'
 import NHeader from './components/NHeader/index.vue'
+import { useLayoutStore } from './stores/layoutStore'
+const layoutStore = useLayoutStore()
+
 const windowHeight = ref(window.innerHeight)
 const windowWidth = ref(window.innerWidth)
-const isCollapse = ref(false)
 
 function handleResize() {
   windowHeight.value = window.innerHeight;
   windowWidth.value = window.innerWidth;
   if (windowWidth.value < 768) {
-    isCollapse.value = true
+    layoutStore.trueCollapse()
   } else {
-    isCollapse.value = false
+    layoutStore.falseCollapse()
   }
 }
 
@@ -40,8 +42,5 @@ onUnmounted(() => {
   window.removeEventListener('resize', handleResize);
 });
 
-const isCollapseHandler = (val: boolean) => {
-  isCollapse.value = val
-}
 </script>
 

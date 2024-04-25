@@ -65,12 +65,9 @@ import {
   Location,
   Menu as IconMenu
 } from '@element-plus/icons-vue'
-defineProps({
-  isCollapse: {
-    type: Boolean,
-    default: false
-  },
-})
+import { storeToRefs } from 'pinia'
+import { useLayoutStore } from '@/layout/stores/layoutStore'
+const { isCollapse } = storeToRefs(useLayoutStore())
 
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)

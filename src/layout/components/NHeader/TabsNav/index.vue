@@ -31,17 +31,14 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { TabsPaneContext } from 'element-plus'
+import { storeToRefs } from 'pinia'
+import { useLayoutStore } from '@/layout/stores/layoutStore'
+const { isCollapse } = storeToRefs(useLayoutStore())
 const contextMenuVisible = ref(false)
 const left = ref(0)
 const top = ref(0)
 const router = useRouter()
 
-const props = defineProps({
-  isCollapse: {
-    type: Boolean,
-    default: false
-  },
-})
 
 const rightClick = (mouseEvent: MouseEvent) => {
 
@@ -51,7 +48,7 @@ const rightClick = (mouseEvent: MouseEvent) => {
     targetId = target.id;
     if (!!targetId) {
       contextMenuVisible.value = true;
-      left.value = mouseEvent.clientX - (props.isCollapse ? 65: 250);
+      left.value = mouseEvent.clientX - (isCollapse ? 65: 250);
       top.value = mouseEvent.clientY - 60;
     } else {
       contextMenuVisible.value = false;
