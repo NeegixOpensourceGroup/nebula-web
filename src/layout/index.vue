@@ -18,8 +18,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import NAsider from './components/NAsider/index.vue'
 import NHeader from './components/NHeader/index.vue'
 import { useLayoutStore } from './stores/layoutStore'
-const layoutStore = useLayoutStore()
-
+const {trueCollapse, falseCollapse } = useLayoutStore()
 const windowHeight = ref(window.innerHeight)
 const windowWidth = ref(window.innerWidth)
 
@@ -27,9 +26,9 @@ function handleResize() {
   windowHeight.value = window.innerHeight;
   windowWidth.value = window.innerWidth;
   if (windowWidth.value < 768) {
-    layoutStore.trueCollapse()
+    trueCollapse()
   } else {
-    layoutStore.falseCollapse()
+    falseCollapse()
   }
 }
 

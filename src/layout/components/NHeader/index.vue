@@ -53,6 +53,7 @@ import { useLayoutStore } from '@/layout/stores/layoutStore'
 // 可以在组件中的任意位置访问 `store` 变量 ✨
 const layoutStore = useLayoutStore()
 const { isCollapse } = storeToRefs(layoutStore)
+const { reverseCollapse } = layoutStore
 
 const activeIndex = ref('1')
 
@@ -62,7 +63,7 @@ const handleSelect = (key: string, keyPath: string[]) => {
 
 // 折叠
 const isCollapseHandler = () => {
-  layoutStore.reverseCollapse()
+  reverseCollapse()
 }
 </script>
 
