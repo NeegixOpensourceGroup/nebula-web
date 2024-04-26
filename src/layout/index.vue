@@ -4,9 +4,10 @@
     <el-container>
       <n-header />
       <el-main>
-        <el-scrollbar>
+        <div>hello</div>
+        <!-- <el-scrollbar>
           <router-view></router-view>
-        </el-scrollbar>
+        </el-scrollbar> -->
       </el-main>
     </el-container>
   </el-container>

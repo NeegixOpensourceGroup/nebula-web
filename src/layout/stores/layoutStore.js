@@ -1,6 +1,10 @@
 import { defineStore } from 'pinia'
 export const useLayoutStore = defineStore('layout', {
-  state: () => ({ isCollapse: false }),
+  state: () => ({ 
+    isCollapse: false,
+    headerMenu: [],
+    siderMenu: []
+  }),
   actions: {
     toggleCollapse() {
       this.isCollapse = !this.isCollapse

@@ -3,7 +3,7 @@
     <div class="container">
       <div class="left">
         <div class="n-collapse">
-          <el-icon :size="25" @click="toggleCollapseHandler" style="cursor: pointer;" color="#909399">
+          <el-icon :size="25" @click="toggleCollapse" style="cursor: pointer;" color="#909399">
             <component :is="!isCollapse ? Fold : Expand" />
           </el-icon>
         </div>
@@ -14,9 +14,10 @@
           mode="horizontal"
           @select="handleSelect"
         >
-          <el-menu-item index="1"><el-icon><location /></el-icon>系统管理</el-menu-item>
-          <el-menu-item index="2">开发管理</el-menu-item>
-          <el-menu-item index="3">日志管理</el-menu-item>
+          <el-menu-item index="1">首页</el-menu-item>
+          <el-menu-item index="2"><el-icon><location /></el-icon>系统管理</el-menu-item>
+          <el-menu-item index="3">开发管理</el-menu-item>
+          <el-menu-item index="4">日志管理</el-menu-item>
         </el-menu>
       </div>
       <div class="right">
@@ -61,10 +62,6 @@ const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
 
-// 折叠
-const toggleCollapseHandler = () => {
-  toggleCollapse()
-}
 </script>
 
 
