@@ -1,15 +1,14 @@
 <template>
   <el-container>
     <n-asider />
-    <el-container>
+    <el-main>
       <n-header />
       <el-main>
-        <div>hello</div>
-        <!-- <el-scrollbar>
+        <el-scrollbar>
           <router-view></router-view>
-        </el-scrollbar> -->
+        </el-scrollbar>
       </el-main>
-    </el-container>
+    </el-main>
   </el-container>
 </template>
 
