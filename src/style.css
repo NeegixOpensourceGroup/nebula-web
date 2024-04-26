@@ -78,12 +78,8 @@ button:focus-visible {
   }
 } */
 
-html, body{
+:root, body{
   margin: 0;
-  height: 100%;
-}
-
-#app{
   height: 100%;
 }
 
@@ -95,11 +91,14 @@ html, body{
   border-bottom: 0;
 }
 
-
 a {
   text-decoration: none;
 }
 
 .router-link-active {
   text-decoration: none;
+}
+
+.el-container, #app{
+  height: 100%;
 }

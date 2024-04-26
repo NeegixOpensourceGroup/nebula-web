@@ -1,5 +1,5 @@
 <template>
-  <el-container style="height: 100%;">
+  <el-container>
     <n-asider />
     <el-container>
       <n-header />
@@ -18,7 +18,7 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import NAsider from './components/NAsider/index.vue'
 import NHeader from './components/NHeader/index.vue'
 import { useLayoutStore } from './stores/layoutStore'
-const {trueCollapse, falseCollapse } = useLayoutStore()
+const {downCollapse, upCollapse } = useLayoutStore()
 const windowHeight = ref(window.innerHeight)
 const windowWidth = ref(window.innerWidth)
 
@@ -26,9 +26,9 @@ function handleResize() {
   windowHeight.value = window.innerHeight;
   windowWidth.value = window.innerWidth;
   if (windowWidth.value < 768) {
-    trueCollapse()
+    downCollapse()
   } else {
-    falseCollapse()
+    upCollapse()
   }
 }
 

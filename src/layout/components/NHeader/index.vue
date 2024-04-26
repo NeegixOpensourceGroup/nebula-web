@@ -1,9 +1,9 @@
 <template>
-  <el-header style="font-size: 12px;height: 90px;width: 100%;">
+  <el-header class="n-header">
     <div class="container">
       <div class="left">
-        <div style="display: flex;flex-direction: column; justify-content: flex-end;height: 60px;">
-          <el-icon :size="25" @click="isCollapseHandler" style="cursor: pointer;" color="#909399">
+        <div class="n-collapse">
+          <el-icon :size="25" @click="toggleCollapseHandler" style="cursor: pointer;" color="#909399">
             <component :is="!isCollapse ? Fold : Expand" />
           </el-icon>
         </div>
@@ -53,7 +53,7 @@ import { useLayoutStore } from '@/layout/stores/layoutStore'
 // 可以在组件中的任意位置访问 `store` 变量 ✨
 const layoutStore = useLayoutStore()
 const { isCollapse } = storeToRefs(layoutStore)
-const { reverseCollapse } = layoutStore
+const { toggleCollapse } = layoutStore
 
 const activeIndex = ref('1')
 
@@ -62,8 +62,8 @@ const handleSelect = (key: string, keyPath: string[]) => {
 }
 
 // 折叠
-const isCollapseHandler = () => {
-  reverseCollapse()
+const toggleCollapseHandler = () => {
+  toggleCollapse()
 }
 </script>
 
@@ -89,7 +89,21 @@ const isCollapseHandler = () => {
 }
 
 .middle {
-    flex: 1 1 auto; /* 定义为自适应宽度，flex-grow为1，表示剩余空间按比例分配给它 */
-    min-width: 0; /* 避免某些情况下内容过少时，元素不收缩的问题 */
+  flex: 1 1 auto; /* 定义为自适应宽度，flex-grow为1，表示剩余空间按比例分配给它 */
+  min-width: 0; /* 避免某些情况下内容过少时，元素不收缩的问题 */
 }
+
+.n-header{
+  font-size: 12px;
+  height: 90px;
+  width: 100%;
+}
+
+.n-collapse{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 60px;
+}
+
 </style>

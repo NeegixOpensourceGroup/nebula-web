@@ -117,11 +117,11 @@ const handleClickOtherArea = (e) => {
 
 onMounted(() => {
   window.addEventListener('click', handleClickOtherArea)
-});
+})
  
 onUnmounted(() => {
   window.removeEventListener('click', handleClickOtherArea);
-});
+})
 </script>
 <style scoped>
 .el-tabs {

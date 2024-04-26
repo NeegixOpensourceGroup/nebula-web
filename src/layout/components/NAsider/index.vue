@@ -18,8 +18,8 @@
           :collapse="isCollapse"
           @open="handleOpen"
           @close="handleClose"
-          class="el-menu-vertical-demo"
-          :style="`border-right:0px;`"
+          class="el-menu-vertical"
+          style="border-right:0px"
         >
           <el-sub-menu index="1">
             <template #title>
@@ -43,7 +43,7 @@
             <el-icon><icon-menu /></el-icon>
             <template #title>系统管理</template>
           </el-menu-item>
-          <el-menu-item index="3" disabled>
+          <el-menu-item index="3">
             <el-icon><document /></el-icon>
             <template #title>开发管理</template>
           </el-menu-item>
@@ -77,7 +77,7 @@ const handleClose = (key: string, keyPath: string[]) => {
 }
 </script>
 <style>
-.el-menu-vertical-demo:not(.el-menu--collapse) {
+.el-menu-vertical:not(.el-menu--collapse) {
     width: 250px;
     min-height: 400px;
   }

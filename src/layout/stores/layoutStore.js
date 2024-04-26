@@ -2,13 +2,13 @@ import { defineStore } from 'pinia'
 export const useLayoutStore = defineStore('layout', {
   state: () => ({ isCollapse: false }),
   actions: {
-    reverseCollapse() {
+    toggleCollapse() {
       this.isCollapse = !this.isCollapse
     },
-    trueCollapse() {
+    downCollapse() {
       this.isCollapse = true
     },
-    falseCollapse() {
+    upCollapse() {
       this.isCollapse = false
     }
   },
