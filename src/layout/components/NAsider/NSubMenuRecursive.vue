@@ -1,7 +1,7 @@
 <template>
   <el-menu-item :index="item.id"  v-if="!item.children || item.children.length === 0" @click="() => $router.push(item.path)">
-    <el-icon><component is="apple" /></el-icon>
-    <span>{{ item.title }}</span>
+      <el-icon><component is="apple" /></el-icon>
+      <template #title><span>{{ item.title }}</span></template>
   </el-menu-item>
   <el-sub-menu v-else :index="item.id">
     <template #title>
