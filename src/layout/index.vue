@@ -18,7 +18,9 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import NAsider from './components/NAsider/index.vue'
 import NHeader from './components/NHeader/index.vue'
 import { useLayoutStore } from './stores/layoutStore'
-const {downCollapse, upCollapse } = useLayoutStore()
+import { useRouter } from 'vue-router'
+
+const {downCollapse, upCollapse, generatedMenu } = useLayoutStore()
 const windowHeight = ref(window.innerHeight)
 const windowWidth = ref(window.innerWidth)
 
@@ -35,6 +37,8 @@ function handleResize() {
 onMounted(() => {
   window.addEventListener('resize', handleResize);
   handleResize(); // 初始化获取高度
+  generatedMenu()
+  //console.log(useRouter().getRoutes())
 });
  
 onUnmounted(() => {

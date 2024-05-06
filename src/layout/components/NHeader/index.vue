@@ -41,7 +41,7 @@
   </el-header>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import {
   Setting,
@@ -51,6 +51,7 @@ import {
 } from '@element-plus/icons-vue'
 import TabsNav from './TabsNav/index.vue'
 import { useLayoutStore } from '@/layout/stores/layoutStore'
+
 // 可以在组件中的任意位置访问 `store` 变量 ✨
 const layoutStore = useLayoutStore()
 const { isCollapse } = storeToRefs(layoutStore)
@@ -61,7 +62,6 @@ const activeIndex = ref('1')
 const handleSelect = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }
-
 </script>
 
 
