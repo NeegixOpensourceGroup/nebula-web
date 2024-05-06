@@ -48,7 +48,7 @@ const rightClick = (mouseEvent: MouseEvent) => {
     targetId = target.id;
     if (!!targetId) {
       contextMenuVisible.value = true;
-      left.value = mouseEvent.clientX - (isCollapse ? 65: 250);
+      left.value = mouseEvent.clientX - (isCollapse.value ? 65: 250);
       top.value = mouseEvent.clientY - 60;
     } else {
       contextMenuVisible.value = false;
