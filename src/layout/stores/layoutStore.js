@@ -32,7 +32,8 @@ export const useLayoutStore = defineStore('layout', {
               const menuItem = {
                 id: childRoute.name,
                 title: childRoute.meta.title || '', // 使用meta.title作为菜单文本，如果没有则为空
-                path: childRoute.path
+                path: childRoute.path,
+                icon: childRoute.meta.icon || ''
               };
       
               // 如果子路由还有子路由，继续递归处理
@@ -50,7 +51,8 @@ export const useLayoutStore = defineStore('layout', {
             const menuItem = {
               id: route.name,
               title: route.meta.title || '',
-              path: route.path
+              path: route.path,
+              icon: route.meta.icon || ''
             };
 
             // 只有当route有children并且children数组非空时，才添加children属性

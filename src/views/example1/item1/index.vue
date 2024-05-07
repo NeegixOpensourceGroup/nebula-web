@@ -9,6 +9,96 @@
   <div>
     这是一段文本，它应该根据父级div的宽度自动换行。
   </div>
+  <div class="child">
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div class="child">
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div class="child">
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div class="child">
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div class="child">
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div class="child">
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div class="child">
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div class="child">
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div class="child">
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div class="child">
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
+  <div>
+    这是一段文本，它应该根据父级div的宽度自动换行。
+  </div>
   <el-button type="primary" icon="el-icon-search">搜索</el-button>
 </div>
 </template>

@@ -4,8 +4,11 @@
     <el-main>
       <n-header />
       <el-main>
+        <iframe v-if="$route.meta.externalUrl" :src="$route.meta.externalUrl" width="100%" :height="windowHeight-96" frameborder="0"></iframe>
         <el-scrollbar>
-          <router-view></router-view>
+          <div v-if="!$route.meta.externalUrl" :style="`height:${windowHeight-90}px;`">
+            <router-view ></router-view>
+          </div>
         </el-scrollbar>
       </el-main>
     </el-main>
@@ -18,7 +21,6 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import NAsider from './components/NAsider/index.vue'
 import NHeader from './components/NHeader/index.vue'
 import { useLayoutStore } from './stores/layoutStore'
-import { useRouter } from 'vue-router'
 
 const {downCollapse, upCollapse, generatedMenu } = useLayoutStore()
 const windowHeight = ref(window.innerHeight)
