@@ -14,6 +14,9 @@
 
 <script setup>
 import { useRouter } from "vue-router";
+import { useLayoutStore } from '@/layout/stores/layoutStore'
+
+const { addTab } = useLayoutStore()
 const router = useRouter();
 const props = defineProps({
   item: {
@@ -25,6 +28,7 @@ const props = defineProps({
 const jumpPath = (item) => {
   if(!item.path.startsWith('http')){
     router.push(item.path)
+    addTab(item.title, item.id, item.path)
   } else {
     window.open(item.path)
   }

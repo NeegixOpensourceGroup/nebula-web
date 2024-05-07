@@ -10,6 +10,14 @@
       :column="1"
       border
     >
+    <el-descriptions-item>
+        <template #label>
+          <div class="cell-item">
+            <el-text class="mx-1" type="success">nebula-web</el-text>
+          </div>
+        </template>
+        <el-tag  type="success" size="small">0.0.1</el-tag>
+      </el-descriptions-item>
       <el-descriptions-item>
         <template #label>
           <div class="cell-item">
@@ -66,8 +74,18 @@
         <span>更新内容</span>
       </div>
     </template>
+    <p>3. 初步实现了tabs的动态实现</p>
     <p>2. 增加不存在的路由跳转到404</p>
     <p>1. 路由添加外链配置</p>
+  </el-card>
+  <el-card>
+    <template #header>
+      <div class="card-header">
+        <span>计划内容</span>
+      </div>
+    </template>
+    <p>1. 优化tabs的体验，增加删除等操作</p>
+    <p>2. tabs菜单的实现</p>
   </el-card>
 </div>
 </template>

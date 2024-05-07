@@ -6,7 +6,18 @@ export const useLayoutStore = defineStore('layout', {
   state: () => ({ 
     isCollapse: false,
     headerMenu: [],
-    siderMenu: []
+    siderMenu: [],
+    activeMenu: '1',
+    tabs: [
+      // {
+      //   title: 'Tab 1',
+      //   name: '1',
+      // },
+      // {
+      //   title: 'Tab 2',
+      //   name: '2',
+      // },
+    ]
   }),
   actions: {
     toggleCollapse() {
@@ -66,6 +77,20 @@ export const useLayoutStore = defineStore('layout', {
       }
       // 转换路由配置为菜单结构
       this.siderMenu = transformRoutesToMenus(routes)
+    },
+    addTab (title, name, path){
+      // Check if a tab with the same name already exists in the tabs array
+      const tabExists = this.tabs.some(tab => tab.name === name)
+
+      // If the tab does not exist, push the new tab into the array and set it as active
+      if (!tabExists) {
+        this.tabs.push({
+          title: title,
+          name: name,
+          path: path
+        })
+      }
+      this.activeMenu = name
     }
   },
 })

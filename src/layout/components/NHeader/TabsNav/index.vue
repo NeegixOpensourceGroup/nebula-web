@@ -1,7 +1,7 @@
 <template>
   <div style="height: 30px; position: relative; z-index: 2;">
     <el-tabs
-      v-model="editableTabsValue"
+      v-model="activeMenu"
       type="card"
       closable
       @tab-click="clickTab"
@@ -9,7 +9,7 @@
       @contextmenu.prevent="rightClick"
     >
       <el-tab-pane
-        v-for="item in editableTabs"
+        v-for="item in tabs"
         :key="item.name"
         :label="item.title"
         :name="item.name"
@@ -33,7 +33,7 @@ import { useRouter } from 'vue-router'
 import { TabsPaneContext } from 'element-plus'
 import { storeToRefs } from 'pinia'
 import { useLayoutStore } from '@/layout/stores/layoutStore'
-const { isCollapse } = storeToRefs(useLayoutStore())
+const { isCollapse, tabs, activeMenu } = storeToRefs(useLayoutStore())
 const contextMenuVisible = ref(false)
 const left = ref(0)
 const top = ref(0)
@@ -103,9 +103,8 @@ const removeTab = (targetName: string) => {
 }
 
 const clickTab = (pane: TabsPaneContext, ev: Event) => {
-  console.log(pane.paneName)
-  const path = pane.paneName === '1' ? '/' : `/item${pane.paneName}1`
-  router.push(path)
+  const tab = tabs.value.find(item=>item.name == pane.paneName)
+  router.push(tab.path)
 }
 
 const handleClickOtherArea = (e) => {
