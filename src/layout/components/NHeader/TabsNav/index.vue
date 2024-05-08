@@ -5,7 +5,7 @@
       type="card"
       closable
       @tab-click="clickTab"
-      @tab-remove="removeTab"
+      @tab-remove="removeThisTab"
       @contextmenu.prevent="rightClick"
     >
       <el-tab-pane
@@ -34,6 +34,7 @@ import { TabsPaneContext } from 'element-plus'
 import { storeToRefs } from 'pinia'
 import { useLayoutStore } from '@/layout/stores/layoutStore'
 const { isCollapse, tabs, activeMenu } = storeToRefs(useLayoutStore())
+const { removeTab } = useLayoutStore()
 const contextMenuVisible = ref(false)
 const left = ref(0)
 const top = ref(0)
@@ -56,50 +57,13 @@ const rightClick = (mouseEvent: MouseEvent) => {
   }
 }
 
-let tabIndex = 1
-const editableTabsValue = ref('1')
-const editableTabs = ref([
-  {
-    title: 'Tab 1',
-    name: '1',
-    content: 'Tab 1 content',
-  },
-  {
-    title: 'Tab 2',
-    name: '2',
-    content: 'Tab 2 content',
-  },
-])
-
 const closeAll = () => {
   console.log("closeAll")
 }
 
-// const addTab = (targetName: string) => {
-//   const newTabName = `${++tabIndex}`
-//   editableTabs.value.push({
-//     title: 'New Tab',
-//     name: newTabName,
-//     content: 'New Tab content',
-//   })
-//   editableTabsValue.value = newTabName
-// }
-const removeTab = (targetName: string) => {
-  const tabs = editableTabs.value
-  let activeName = editableTabsValue.value
-  if (activeName === targetName) {
-    tabs.forEach((tab, index) => {
-      if (tab.name === targetName) {
-        const nextTab = tabs[index + 1] || tabs[index - 1]
-        if (nextTab) {
-          activeName = nextTab.name
-        }
-      }
-    })
-  }
-
-  editableTabsValue.value = activeName
-  editableTabs.value = tabs.filter((tab) => tab.name !== targetName)
+const removeThisTab = (targetName: string) => {
+  const nextTab = removeTab(targetName)
+  router.push(nextTab.path)
 }
 
 const clickTab = (pane: TabsPaneContext, ev: Event) => {

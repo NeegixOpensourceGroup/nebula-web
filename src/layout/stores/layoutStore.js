@@ -7,16 +7,8 @@ export const useLayoutStore = defineStore('layout', {
     isCollapse: false,
     headerMenu: [],
     siderMenu: [],
-    activeMenu: '1',
+    activeMenu: '',
     tabs: [
-      // {
-      //   title: 'Tab 1',
-      //   name: '1',
-      // },
-      // {
-      //   title: 'Tab 2',
-      //   name: '2',
-      // },
     ]
   }),
   actions: {
@@ -91,6 +83,21 @@ export const useLayoutStore = defineStore('layout', {
         })
       }
       this.activeMenu = name
+    },
+    removeTab(name){
+      let nextTab
+      if (this.activeMenu === name) {
+        this.tabs.forEach((tab, index) => {
+          if (tab.name === name) {
+            nextTab = this.tabs[index + 1] || this.tabs[index - 1]
+            if (nextTab) {
+              this.activeMenu = nextTab.name
+            }
+          }
+        })
+      }
+      this.tabs = this.tabs.filter((tab) => tab.name !== name)
+      return nextTab
     }
   },
 })
