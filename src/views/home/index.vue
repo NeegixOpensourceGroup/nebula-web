@@ -74,6 +74,7 @@
         <span>更新内容</span>
       </div>
     </template>
+    <p>4. Tab菜单删除实现</p>
     <p>3. 初步实现了tabs的动态实现</p>
     <p>2. 增加不存在的路由跳转到404</p>
     <p>1. 路由添加外链配置</p>
@@ -84,8 +85,10 @@
         <span>计划内容</span>
       </div>
     </template>
-    <p>1. 优化tabs的体验，增加删除等操作</p>
+    <p><del>1. 优化tabs的体验，增加删除等操作</del></p>
     <p>2. tabs菜单的实现</p>
+    <p>3. 路由结构需要调整（解决控制台报没有componets项的问题）</p>
+    <p>4. 默认首页Tab处理</p>
   </el-card>
 </div>
 </template>
