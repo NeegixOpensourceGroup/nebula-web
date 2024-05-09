@@ -22,53 +22,39 @@ export const useLayoutStore = defineStore('layout', {
       this.isCollapse = false
     },
     generatedMenu() {
-      function transformRoutesToMenus(routes) {
-        // 首先，找到顶层的Layout组件路由
-        const layoutRoute = routes.find(route => route.component === Layout)
-      
-        // 如果找到了Layout组件的路由，则处理其子路由来生成菜单
-        if (layoutRoute && layoutRoute.children) {
-          return layoutRoute.children
-            // 过滤掉子路由中的Layout或其他不需要直接展示的组件
-            .filter(childRoute => childRoute.component !== Layout)
-            .map(childRoute => {
-              const menuItem = {
-                id: childRoute.name,
-                title: childRoute.meta.title || '', // 使用meta.title作为菜单文本，如果没有则为空
-                path: childRoute.path,
-                icon: childRoute.meta.icon || ''
-              };
-      
-              // 如果子路由还有子路由，继续递归处理
-              if (childRoute.children && childRoute.children.length > 0) {
-                menuItem.children = transformRoutesToMenus(childRoute.children)
-              }
-      
-              return menuItem
-            });
-        } else {
-          // 如果没有找到Layout组件的路由，则直接处理所有顶级路由（这取决于您的路由结构）
-          return routes
-          .filter(route => route.component !== Layout) // 确保顶层非Layout的路由也被处理
-          .map(route => {
-            const menuItem = {
-              id: route.name,
-              title: route.meta.title || '',
+      // 定义一个函数，用于递归遍历路由对象，并根据条件生成菜单
+      function routesConvertToMenus(routes) {
+        let menus = []
+
+        routes.forEach(route => {
+          // 如果当前路由对象有 meta 属性，则添加到菜单中
+          if (route.meta) {
+            // 创建菜单项
+            let menu = {
               path: route.path,
-              icon: route.meta.icon || ''
+              id: route.name,
+              title: route.meta.title,
+              icon: route.meta.icon
             };
 
-            // 只有当route有children并且children数组非空时，才添加children属性
-            if (route.children && route.children.length > 0) {
-              menuItem.children = transformRoutesToMenus(route.children)
+            // 如果当前路由对象有子路由，则递归处理子路由
+            if (route.children) {
+              menu.children = routesConvertToMenus(route.children);
             }
 
-            return menuItem
-          });
-        }
+            // 添加菜单项到菜单数组
+            menus.push(menu);
+          } else if (route.children) {
+            // 如果当前路由对象没有 meta 属性，但有子路由，则递归处理子路由
+            let childMenus = routesConvertToMenus(route.children)
+            menus = menus.concat(childMenus)
+          }
+        })
+
+        return menus
       }
       // 转换路由配置为菜单结构
-      this.siderMenu = transformRoutesToMenus(routes)
+      this.siderMenu = routesConvertToMenus(routes)
     },
     addTab (title, name, path){
       // Check if a tab with the same name already exists in the tabs array
