@@ -35,11 +35,15 @@ export const useLayoutStore = defineStore('layout', {
               id: route.name,
               title: route.meta.title,
               icon: route.meta.icon
-            };
+            }
+
+            if(route.redirect){
+              menu.redirect = route.redirect
+            }
 
             // 如果当前路由对象有子路由，则递归处理子路由
             if (route.children) {
-              menu.children = routesConvertToMenus(route.children);
+              menu.children = routesConvertToMenus(route.children)
             }
 
             // 添加菜单项到菜单数组
@@ -55,20 +59,38 @@ export const useLayoutStore = defineStore('layout', {
       }
       // 转换路由配置为菜单结构
       this.siderMenu = routesConvertToMenus(routes)
+      function findFirstDeepestChild(item) {
+        if (item.children) {
+          for (const child of item.children) {
+            const deepestChild = findFirstDeepestChild(child);
+            if (deepestChild) {
+              // 返回第一个找到的最末级子项
+              return deepestChild;
+            }
+          }
+        }
+        // 如果没有children或者已经是最末级，就返回当前项
+        return item;
+      }
+      
+      const firstDeepestChildOfProduct = findFirstDeepestChild(this.siderMenu[0])
+      
+      // 默认添加第一个最末级子项
+      this.addTab(firstDeepestChildOfProduct.title, firstDeepestChildOfProduct.id, firstDeepestChildOfProduct.path)
     },
     addTab (title, name, path){
       // Check if a tab with the same name already exists in the tabs array
-      const tabExists = this.tabs.some(tab => tab.name === name)
+      const tabExists = this.tabs.some(tab => tab.path === path)
 
       // If the tab does not exist, push the new tab into the array and set it as active
       if (!tabExists) {
         this.tabs.push({
           title: title,
-          name: name,
+          name: path,
           path: path
         })
       }
-      this.activeMenu = name
+      this.activeMenu = path
     },
     removeTab(name){
       let nextTab
