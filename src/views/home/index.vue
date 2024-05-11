@@ -88,7 +88,7 @@
     <p><del>1. 优化tabs的体验，增加删除等操作</del></p>
     <p>2. tabs右键菜单的实现</p>
     <p><del>3. 路由结构需要调整（解决控制台报没有componets项的问题）</del></p>
-    <p>4. 默认首页Tab处理</p>
+    <p><del>4. 默认首页Tab处理</del></p>
   </el-card>
 </div>
 </template>
