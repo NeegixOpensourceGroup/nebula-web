@@ -5,7 +5,7 @@
       type="card"
       closable
       @tab-click="clickTab"
-      @tab-remove="removeThisTab"
+      @tab-remove="removeCurrentTab"
       @contextmenu.prevent="rightClick"
     >
       <el-tab-pane
@@ -21,9 +21,9 @@
         class="contextmenu"
       >
         <li @click="closeAll()">关闭所有</li>
-        <li>关闭左边</li>
-        <li>关闭右边</li>
-        <li>关闭其他</li>
+        <li @click="closeLeft()">关闭左边</li>
+        <li @click="closeRight()">关闭右边</li>
+        <li @click="closeOther()">关闭其他</li>
       </ul>
   </div>
 </template>
@@ -34,7 +34,7 @@ import { TabsPaneContext } from 'element-plus'
 import { storeToRefs } from 'pinia'
 import { useLayoutStore } from '@/layout/stores/layoutStore'
 const { isCollapse, tabs, activeMenu } = storeToRefs(useLayoutStore())
-const { removeTab } = useLayoutStore()
+const { removeTab, closeAllTab } = useLayoutStore()
 const contextMenuVisible = ref(false)
 const left = ref(0)
 const top = ref(0)
@@ -58,12 +58,29 @@ const rightClick = (mouseEvent: MouseEvent) => {
 }
 
 const closeAll = () => {
-  console.log("closeAll")
+  tabs.value = []
 }
 
-const removeThisTab = (targetName: string) => {
+const removeCurrentTab = (targetName: string) => {
   const nextTab = removeTab(targetName)
   router.push(nextTab.path)
+}
+
+const closeLeft = () => {
+  const index = tabs.value.findIndex(item=>item.name == activeMenu.value)
+  const tab = tabs.value.splice(0, index)
+  router.push(tab[tab.length - 1].path)
+}
+
+const closeRight = () => {
+  const index = tabs.value.findIndex(item=>item.name == activeMenu.value)
+  const tab = tabs.value.splice(index + 1)
+  router.push(tab[0].path)
+}
+
+const closeOther = () => {
+  tabs.value = tabs.value.filter(item => item.name === activeMenu.value)
+  router.push(tabs.value[0].path)
 }
 
 const clickTab = (pane: TabsPaneContext, ev: Event) => {

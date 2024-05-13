@@ -1,15 +1,13 @@
 import { defineStore } from 'pinia'
-import Layout from '@/layout/index'
 import {routes} from '@/router'
 
 export const useLayoutStore = defineStore('layout', {
   state: () => ({ 
-    isCollapse: false,
-    headerMenu: [],
-    siderMenu: [],
-    activeMenu: '',
-    tabs: [
-    ]
+    isCollapse: false, // 侧边栏是否折叠
+    headerMenu: [], // 顶部菜单
+    siderMenu: [], // 侧边栏菜单
+    activeMenu: '', // 当前激活的菜单
+    tabs: [] // 标签页列表
   }),
   actions: {
     toggleCollapse() {
@@ -86,11 +84,11 @@ export const useLayoutStore = defineStore('layout', {
       if (!tabExists) {
         this.tabs.push({
           title: title,
-          name: path,
+          name: name,
           path: path
         })
       }
-      this.activeMenu = path
+      this.activeMenu = name
     },
     removeTab(name){
       let nextTab
@@ -106,6 +104,6 @@ export const useLayoutStore = defineStore('layout', {
       }
       this.tabs = this.tabs.filter((tab) => tab.name !== name)
       return nextTab
-    }
+    },
   },
 })
