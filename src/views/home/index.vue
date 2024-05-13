@@ -3,7 +3,7 @@
   <el-card>
     <template #header>
       <div class="card-header">
-        <span>系统信息</span>
+        <span>系统依赖清单</span>
       </div>
     </template>
     <el-descriptions
@@ -71,24 +71,28 @@
   <el-card>
     <template #header>
       <div class="card-header">
-        <span>更新内容</span>
+        <span>功能计划和实现清单</span>
       </div>
     </template>
-    <p>4. Tab菜单删除实现</p>
-    <p>3. 初步实现了tabs的动态实现</p>
-    <p>2. 增加不存在的路由跳转到404</p>
-    <p>1. 路由添加外链配置</p>
+    <p>10. Header区域功能设计与定义</p>
+    <p>9. Header菜单与左侧菜单联动</p>
+    <p><del>8. 默认首页Tab处理</del></p>
+    <p><del>7. 路由结构需要调整（解决控制台报没有componets项的问题）</del></p>
+    <p><del>6. tabs右键菜单的实现</del></p>
+    <p><del>5. 优化tabs的体验，增加删除等操作</del></p>
+    <p><del>4. Tab菜单删除实现</del></p>
+    <p><del>3. 初步实现了tabs的动态实现</del></p>
+    <p><del>2. 增加不存在的路由跳转到404</del></p>
+    <p><del>1. 路由添加外链配置</del></p>
   </el-card>
   <el-card>
     <template #header>
       <div class="card-header">
-        <span>计划内容</span>
+        <span>BUG问题和处理清单</span>
       </div>
     </template>
-    <p><del>1. 优化tabs的体验，增加删除等操作</del></p>
-    <p>2. tabs右键菜单的实现</p>
-    <p><del>3. 路由结构需要调整（解决控制台报没有componets项的问题）</del></p>
-    <p><del>4. 默认首页Tab处理</del></p>
+    <p>1. 地址栏直接访问路由，Tabs未有处理</p>
+    <p>2. 地址栏直接访问路由，菜单未有选中处理</p>
   </el-card>
 </div>
 </template>
