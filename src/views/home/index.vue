@@ -16,7 +16,7 @@
             <el-text class="mx-1" type="success">nebula-web</el-text>
           </div>
         </template>
-        <el-tag  type="success" size="small">0.0.1</el-tag>→<el-tag  type="success" size="small">0.0.2</el-tag>
+        <el-tag  type="success" size="small">0.0.2</el-tag>→<el-tag  type="success" size="small">0.0.3</el-tag>
       </el-descriptions-item>
       <el-descriptions-item>
         <template #label>
