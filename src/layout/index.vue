@@ -35,11 +35,11 @@ function handleResize() {
     upCollapse()
   }
 }
-
+generatedMenu()
 onMounted(() => {
   window.addEventListener('resize', handleResize);
   handleResize(); // 初始化获取高度
-  generatedMenu()
+
   //console.log(useRouter().getRoutes())
 });
  

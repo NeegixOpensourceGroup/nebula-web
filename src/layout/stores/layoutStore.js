@@ -99,8 +99,11 @@ export const useLayoutStore = defineStore('layout', {
             if (nextTab) {
               this.activeMenu = nextTab.name
             }
-          }
+          } 
         })
+        
+      }else {
+        nextTab = this.tabs.find((tab) => tab.name === this.activeMenu)
       }
       this.tabs = this.tabs.filter((tab) => tab.name !== name)
       return nextTab

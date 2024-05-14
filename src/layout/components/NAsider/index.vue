@@ -13,6 +13,8 @@
       </div>
       <el-scrollbar style="flex: 1;">
         <el-menu
+          :router="$route.path.startsWith('http')"
+          :default-active="$route.name"
           ref="sideMenu"
           default-active="1"
           :collapse="isCollapse"
@@ -48,10 +50,10 @@ import { useLayoutStore } from '@/layout/stores/layoutStore'
 const { isCollapse, siderMenu } = storeToRefs(useLayoutStore())
 
 const handleOpen = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+  //console.log(key, keyPath)
 }
 const handleClose = (key: string, keyPath: string[]) => {
-  console.log(key, keyPath)
+  //console.log(key, keyPath)
 }
 </script>
 <style>

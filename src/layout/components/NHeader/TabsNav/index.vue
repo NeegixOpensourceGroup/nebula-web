@@ -34,7 +34,7 @@ import { TabsPaneContext } from 'element-plus'
 import { storeToRefs } from 'pinia'
 import { useLayoutStore } from '@/layout/stores/layoutStore'
 const { isCollapse, tabs, activeMenu } = storeToRefs(useLayoutStore())
-const { removeTab, closeAllTab } = useLayoutStore()
+const { removeTab } = useLayoutStore()
 const contextMenuVisible = ref(false)
 const left = ref(0)
 const top = ref(0)
@@ -95,8 +95,19 @@ const handleClickOtherArea = (e) => {
   }
 }
 
+const route = router.currentRoute.value
+const currentActiveTab = {
+  path: route.path,
+  name: route.name,
+  title: route.meta.title
+}
+
+tabs.value = [currentActiveTab]
+activeMenu.value = currentActiveTab.name
+
 onMounted(() => {
   window.addEventListener('click', handleClickOtherArea)
+
 })
  
 onUnmounted(() => {
