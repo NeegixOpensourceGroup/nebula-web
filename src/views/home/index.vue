@@ -16,7 +16,7 @@
             <el-text class="mx-1" type="success">nebula-web</el-text>
           </div>
         </template>
-        <el-tag  type="success" size="small">0.0.2</el-tag>→<el-tag  type="success" size="small">0.0.3</el-tag>
+        <el-tag  type="success" size="small">0.0.3</el-tag>→<el-tag  type="success" size="small">0.0.4</el-tag>
       </el-descriptions-item>
       <el-descriptions-item>
         <template #label>
@@ -74,8 +74,9 @@
         <span>功能计划和实现清单</span>
       </div>
     </template>
+    <p>13. 增加更新内容弹窗提示</p>
     <p>12. Mock数据模拟</p>
-    <p>11. 增加github和gitee仓库连接</p>
+    <p><del>11. 增加github和gitee仓库连接</del></p>
     <p>10. Header区域功能设计与定义</p>
     <p>9. Header菜单与左侧菜单联动</p>
     <p><del>8. 默认首页Tab处理</del></p>
