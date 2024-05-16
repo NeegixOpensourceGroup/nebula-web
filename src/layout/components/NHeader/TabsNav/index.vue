@@ -3,7 +3,7 @@
     <el-tabs
       v-model="activeMenu"
       type="card"
-      closable
+      :closable="tabs.length > 1"
       @tab-click="clickTab"
       @tab-remove="removeCurrentTab"
       @contextmenu.prevent="rightClick"

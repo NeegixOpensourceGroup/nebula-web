@@ -22,7 +22,7 @@
       </div>
       <div class="right">
         <div>
-          <el-dropdown>
+          <!-- <el-dropdown>
             <el-icon style="margin-right: 8px; margin-top: 1px"><setting/></el-icon>
             <template #dropdown>
               <el-dropdown-menu>
@@ -32,9 +32,16 @@
               </el-dropdown-menu>
             </template>
           </el-dropdown>
-          <span>Tom</span>
+          <span>Tom</span> -->
+          <a href="https://github.com/NeegixOpensourceGroup/nebula-web" target="_blank" class="git-link">
+            Github
+          </a>
+          <a href="https://gitee.com/neegix-opensource-group/nebula-web" target="_blank" class="git-link">
+            Gitee
+          </a>
           <!-- <el-button type="primary" size="small" @click="addTab(editableTabsValue)">新增tab</el-button> -->
         </div>
+        
       </div>
     </div>
     <tabs-nav />
@@ -102,5 +109,23 @@ const handleSelect = (key: string, keyPath: string[]) => {
   justify-content: flex-end;
   height: 60px;
 }
+.git-link {
+    text-decoration: none;
+    color: #333;
+    display: inline-block;
+    margin-right: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .git-link:hover {
+    background-color: #f5f5f5;
+  }
 
+  .icon {
+    margin-right: 5px;
+    font-size: 16px;
+    vertical-align: middle;
+  }
 </style>

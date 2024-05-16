@@ -74,7 +74,8 @@
         <span>功能计划和实现清单</span>
       </div>
     </template>
-    <p>11. Mock数据模拟</p>
+    <p>12. Mock数据模拟</p>
+    <p>11. 增加github和gitee仓库连接</p>
     <p>10. Header区域功能设计与定义</p>
     <p>9. Header菜单与左侧菜单联动</p>
     <p><del>8. 默认首页Tab处理</del></p>
@@ -92,6 +93,7 @@
         <span>BUG问题和处理清单</span>
       </div>
     </template>
+    <p><del>4. 当只有一个tag时不允许删除</del></p>
     <p><del>3. 地址栏直接访问路由，Tabs未有处理</del></p>
     <p><del>2. 地址栏直接访问路由，菜单未有选中处理</del></p>
     <p><del>1. 删除非激活Tab菜单控制台报错</del></p>
