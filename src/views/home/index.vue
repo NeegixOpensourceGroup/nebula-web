@@ -16,7 +16,7 @@
             <el-text class="mx-1" type="success">nebula-web</el-text>
           </div>
         </template>
-        <el-tag  type="success" size="small">0.0.3</el-tag>→<el-tag  type="success" size="small">0.0.4</el-tag>
+        <el-tag  type="success" size="small">0.0.4</el-tag>→<el-tag  type="success" size="small">0.0.5</el-tag>
       </el-descriptions-item>
       <el-descriptions-item>
         <template #label>
@@ -80,7 +80,7 @@
     <p>12. Mock数据模拟</p>
     <p><del>11. 增加github和gitee仓库连接</del></p>
     <p>10. Header区域功能设计与定义</p>
-    <p>9. Header菜单与左侧菜单联动</p>
+    <p><del>9. Header菜单与左侧菜单联动</del></p>
     <p><del>8. 默认首页Tab处理</del></p>
     <p><del>7. 路由结构需要调整（解决控制台报没有componets项的问题）</del></p>
     <p><del>6. tabs右键菜单的实现</del></p>

@@ -10,14 +10,15 @@
       </div>
       <div class="middle">
         <el-menu
-          :default-active="activeIndex"
+          :default-active="headerMenu[0].name"
           mode="horizontal"
           @select="handleSelect"
         >
-          <el-menu-item index="1">首页</el-menu-item>
+          <el-menu-item v-for="(item, index) in headerMenu" :key="item.name" :index="item.name"  @click="findSiderMenu(item.name)"><el-icon><component :is="item.icon" /></el-icon>{{ item.title }}</el-menu-item>
+          <!-- <el-menu-item index="1">首页</el-menu-item>
           <el-menu-item index="2"><el-icon><location /></el-icon>系统管理</el-menu-item>
-          <el-menu-item index="3">开发管理</el-menu-item>
-          <el-menu-item index="4">日志管理</el-menu-item>
+          <el-menu-item index="3" @click="findSiderMenu('layout')">开发管理</el-menu-item>
+          <el-menu-item index="4">日志管理</el-menu-item> -->
         </el-menu>
       </div>
       <div class="right">
@@ -61,8 +62,8 @@ import { useLayoutStore } from '@/layout/stores/layoutStore'
 
 // 可以在组件中的任意位置访问 `store` 变量 ✨
 const layoutStore = useLayoutStore()
-const { isCollapse } = storeToRefs(layoutStore)
-const { toggleCollapse } = layoutStore
+const { isCollapse, headerMenu } = storeToRefs(layoutStore)
+const { toggleCollapse, findSiderMenu } = layoutStore
 
 const activeIndex = ref('1')
 

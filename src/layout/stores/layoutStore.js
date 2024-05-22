@@ -2,10 +2,12 @@ import { defineStore } from 'pinia'
 import {routes} from '@/router'
 
 export const useLayoutStore = defineStore('layout', {
-  state: () => ({ 
+  state: () => ({
+    layout: 'normal', // 默认布局
     isCollapse: false, // 侧边栏是否折叠
     headerMenu: [], // 顶部菜单
     siderMenu: [], // 侧边栏菜单
+    menus:[], // 所有菜单
     activeMenu: '', // 当前激活的菜单
     tabs: [] // 标签页列表
   }),
@@ -30,7 +32,7 @@ export const useLayoutStore = defineStore('layout', {
             // 创建菜单项
             let menu = {
               path: route.path,
-              id: route.name,
+              name: route.name,
               title: route.meta.title,
               icon: route.meta.icon
             }
@@ -56,7 +58,13 @@ export const useLayoutStore = defineStore('layout', {
         return menus
       }
       // 转换路由配置为菜单结构
-      this.siderMenu = routesConvertToMenus(routes)
+      this.menus = this.siderMenu = routesConvertToMenus(routes)
+
+      if (this.layout === 'normal'){
+        this.headerMenu = this.menus.filter(item=>!!item.children)
+        this.findSiderMenu(this.headerMenu[0].name)
+      }
+      
       function findFirstDeepestChild(item) {
         if (item.children) {
           for (const child of item.children) {
@@ -75,6 +83,9 @@ export const useLayoutStore = defineStore('layout', {
       
       // 默认添加第一个最末级子项
       this.addTab(firstDeepestChildOfProduct.title, firstDeepestChildOfProduct.id, firstDeepestChildOfProduct.path)
+    },
+    findSiderMenu(name){
+      this.siderMenu = this.menus.find(item => item.name === name).children
     },
     addTab (title, name, path){
       // Check if a tab with the same name already exists in the tabs array

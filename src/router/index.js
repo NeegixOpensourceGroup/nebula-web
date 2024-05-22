@@ -27,7 +27,19 @@ export const routes = [
           title: '首页1-2',
           icon: 'Menu'
         },
-        component: () => import('@/views/example1/item1/index'),
+        redirect: '/item15',
+        children: [
+          {
+            path: '/item15',
+            name: 'home15',
+            component: Layout,
+            meta: {
+              externalUrl: 'https://nebula.neegix.com',
+              title: '首页1-5',
+              icon: 'Menu'
+            }
+          }
+        ],
       },
       {
         path: '/item14',
@@ -37,16 +49,16 @@ export const routes = [
           externalUrl: 'https://nebula.neegix.com',
           title: '第三方-Nebula(内部)',
           icon: 'Menu'
+        }
+      },
+      {
+        path: 'https://nebula.neegix.com',
+        name: 'item15',
+        meta: {
+          title: '第三方-Nebula(新窗口)',
+          icon: 'Menu'
       }
-    },
-    {
-      path: 'https://nebula.neegix.com',
-      name: 'item15',
-      meta: {
-        title: '第三方-Nebula(新窗口)',
-        icon: 'Menu'
     }
-  }
     ],
   },
   {
